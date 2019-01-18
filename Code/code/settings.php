@@ -10,7 +10,7 @@ if(!!!isset($_SESSION["user_id"])){
             require_once('./avatar.php');
         }else{
             $date = strtotime($_REQUEST["fecha_nac"]);
-            echo("TEST".$date);
+            //echo("TEST".$date);
             $sql = "UPDATE users SET nombre=?, apellido=?, domicilio=?, fecha_nac=?, telefono=?, movil=?, dni=? WHERE user_id=?";
             $stmt= $pdo->prepare($sql);
             $stmt->execute([$_REQUEST["nombre"], 
@@ -30,7 +30,8 @@ if(!!!isset($_SESSION["user_id"])){
                 $_SESSION["telefono"] = $_REQUEST["telefono"];
                 $_SESSION["movil"] = $_REQUEST["movil"];
                 $_SESSION["dni"] = $_REQUEST["dni"];
-                header("Location: ./../settings.php");
+                $dir = ROOT . "pages/settings.php";
+                header("Location: ".$dir);
             }
         }
     }
