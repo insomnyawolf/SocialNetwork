@@ -1,0 +1,102 @@
+/**/
+
+@import url('//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+ 
+.isa_info, .isa_success, .isa_warning, .isa_error {
+margin: 10px 0px;
+padding:12px;
+ 
+}
+.isa_info {
+    color: #00529B;
+    background-color: #BDE5F8;
+}
+.isa_success {
+    color: #4F8A10;
+    background-color: #DFF2BF;
+}
+.isa_warning {
+    color: #9F6000;
+    background-color: #FEEFB3;
+}
+.isa_error {
+    color: #D8000C;
+    background-color: #FFD2D2;
+}
+.isa_info i, .isa_success i, .isa_warning i, .isa_error i {
+    margin:10px 22px;
+    font-size:2em;
+    
+    vertical-align:middle;
+}
+
+/**/
+*{
+    border-radius: 5px;
+}
+.center{
+    margin: 0 auto;
+}
+
+.half{
+    width: 40%;
+}
+
+.quarter{
+    width: 30%;
+}
+.full{
+    width:90%;
+}
+.uploadBTN {
+    position: relative;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 10px;
+    height: 100%;
+    margin: auto;
+    opacity: 0;
+    display: none;
+}
+.inline-block{
+    display:inline-block;
+}
+.avatar{
+    height: 200px;
+    width: 200px;
+}
+.cropUse{
+    display: none;
+}
+#use {
+    display: none;
+}
+.left{
+    float: left;
+}
+.right{
+    float: right;
+}
+.reset{
+    float: none;
+}
+.block{
+    display: block;
+}
+.fixed{
+    position: fixed;
+}
+/* Limit image width to avoid overflow the container */
+img#image {
+    max-width: 100%; /* This rule is very important, please do not ignore this! */
+}
+
+body{
+    background-color: #333333;
+}
+
+html,body,h1,h2,h3,h4,h5 {
+    font-family: "Open Sans", sans-serif
+}
