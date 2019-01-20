@@ -21,7 +21,7 @@
                     <p><i class="fa fa-address-card fa-fw w3-margin-right w3-text-theme"></i><?php echo($_SESSION["nombre"]);?></p>
                     <p><i class="fa fa-address-card fa-fw w3-margin-right w3-text-theme"></i><?php echo($_SESSION["apellido"]);?></p>
                     <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i><?php echo($_SESSION["domicilio"]);?></p>
-                    <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i><?php echo($_SESSION["fecha_nac"]);?></p>
+                    <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i><?php echo(formatDate($_SESSION["fecha_nac"]));?></p>
                     <p><i class="fa fa-phone w3-margin-right w3-text-theme"></i><?php echo($_SESSION["telefono"]);?></p>
                     <p><i class="fa fa-mobile w3-margin-right w3-text-theme"></i><?php echo($_SESSION["movil"]);?></p>
                 </div>

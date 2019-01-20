@@ -11,6 +11,11 @@ function getAvatar($id){
 }
 function formatDate($timestamp){
     //La @ Suprime las alertas generadas por esta funcion
+    return date('d-m-Y', $timestamp);
+    //return $timestamp;
+}
+function formatDateSettings($timestamp){
+    //La @ Suprime las alertas generadas por esta funcion
     return date('Y-m-d', $timestamp);
     //return $timestamp;
 }
@@ -42,7 +47,7 @@ function login(){
         $_SESSION["nombre"] = $row["nombre"];
         $_SESSION["apellido"] = $row["apellido"];
         $_SESSION["domicilio"] = $row["domicilio"];
-        $_SESSION["fecha_nac"] = formatDate($row["fecha_nac"]);
+        $_SESSION["fecha_nac"] = $row["fecha_nac"];
         $_SESSION["telefono"] = $row["telefono"];
         $_SESSION["movil"] = $row["movil"];
         $_SESSION["dni"] = $row["dni"];

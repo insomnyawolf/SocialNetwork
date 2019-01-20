@@ -23,7 +23,7 @@
                         <h4 class="inline-block w3-padding">Nombre:</h4><input name="nombre" id="nombre" type="text" class="w3-border w3-padding" value=<?php echo('"'.$_SESSION["nombre"].'"');?> /><br /><br />
                         <h4 class="inline-block w3-padding">Apellido:</h4><input name="apellido" id="apellido" type="text" class="w3-border w3-padding" value=<?php echo('"'.$_SESSION["apellido"].'"');?> /><br /><br />
                         <h4 class="inline-block w3-padding">Domicilio:</h4><input name="domicilio" id="domicilio" type="text" class="w3-border w3-padding" value=<?php echo('"'.$_SESSION["domicilio"].'"');?> /><br /><br />
-                        <h4 class="inline-block w3-padding">Fecha Nacimiento:</h4><input name="fecha_nac" id="fecha_nac" type="date" class="w3-border w3-padding" value="<?php echo($_SESSION["fecha_nac"]); ?>" /><br /><br />
+                        <h4 class="inline-block w3-padding">Fecha Nacimiento:</h4><input name="fecha_nac" id="fecha_nac" type="date" class="w3-border w3-padding" value="<?php echo(formatDateSettings($_SESSION["fecha_nac"])); ?>" /><br /><br />
                         <h4 class="inline-block w3-padding">Telefono:</h4><input name="telefono" id="telefono" type="text" class="w3-border w3-padding" value=<?php echo('"'.$_SESSION["telefono"].'"');?> /><br /><br />
                         <h4 class="inline-block w3-padding">Movil:</h4> <input name="movil" id="movil" type="text" class="w3-border w3-padding" value=<?php echo('"'.$_SESSION["movil"].'"');?> /><br /><br />
                         <h4 class="inline-block w3-padding">DNI:</h4><input name="dni" id="dni" type="text" class="w3-border w3-padding" value=<?php echo('"'.$_SESSION["dni"].'"');?> /><br /><br />

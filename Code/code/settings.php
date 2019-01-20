@@ -25,7 +25,7 @@ if(!!!isset($_SESSION["user_id"])){
                 $_SESSION["nombre"] = $_REQUEST["nombre"];
                 $_SESSION["apellido"] = $_REQUEST["apellido"];
                 $_SESSION["domicilio"] = $_REQUEST["domicilio"];
-                $_SESSION["fecha_nac"] = formatDate($date);
+                $_SESSION["fecha_nac"] = $date;
                 $_SESSION["telefono"] = $_REQUEST["telefono"];
                 $_SESSION["movil"] = $_REQUEST["movil"];
                 $_SESSION["dni"] = $_REQUEST["dni"];
