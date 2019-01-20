@@ -10,7 +10,6 @@ if(!!!isset($_SESSION["user_id"])){
             require_once('./avatar.php');
         }else{
             $date = strtotime($_REQUEST["fecha_nac"]);
-            echo("TEST".$date);
             $sql = "UPDATE users SET nombre=?, apellido=?, domicilio=?, fecha_nac=?, telefono=?, movil=?, dni=? WHERE user_id=?";
             $stmt= $pdo->prepare($sql);
             $stmt->execute([$_REQUEST["nombre"], 

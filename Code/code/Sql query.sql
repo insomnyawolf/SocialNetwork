@@ -1,13 +1,13 @@
-DROP DATABASE `bolsavalores`;
-CREATE DATABASE IF NOT EXISTS `bolsavalores`;
-USE `bolsavalores`;
+DROP DATABASE `SocialNetwork`;
+CREATE DATABASE IF NOT EXISTS `SocialNetwork`;
+USE `SocialNetwork`;
 CREATE TABLE IF NOT EXISTS `users` (
   `user_id` int(11) NOT NULL auto_increment,
   `user` varchar(30) NOT NULL UNIQUE,
   `nombre` varchar(30),
   `apellido` varchar(30),
   `domicilio` varchar(30),
-  `fecha_nac` timestamp,
+  `fecha_nac` int(11),
   `telefono` varchar(30),
   `movil` varchar(30),
   `dni` varchar(30),
