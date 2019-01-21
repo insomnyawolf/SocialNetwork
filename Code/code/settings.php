@@ -2,6 +2,8 @@
 session_start();
 if(!!!isset($_SESSION["user_id"])){
     header("Location: ./../login.php");
+    //Header te redirige de una página a otra
+    //require te carga el codigo especificado
 }else{
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
         require_once("./config.php");
