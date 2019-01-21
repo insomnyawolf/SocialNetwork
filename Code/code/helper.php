@@ -24,7 +24,7 @@ function secured_hash($input){
     return hash('sha512', $input);
 }
 function login(){
-    require_once('./code/config.php');
+    require(ROOT .'code/config.php');
     //Evitar injeccion de sql
     $username = $_REQUEST['username'];
     //Contraseña
@@ -62,7 +62,7 @@ function login(){
 }
 
 function register(){
-    require_once('./code/config.php');
+    require(ROOT .'code/config.php');
     //Comprueba que ambas claves introducidas sean iguales
     $password = $_REQUEST['password'];
     if(($password == $_REQUEST['ConfirmPassword']) && (strlen($password) > 0)){
@@ -93,20 +93,20 @@ function register(){
     }
     return false;
 }
-function unsuscribe(){
-    require_once('./code/config.php');
-    //Evitar injeccion de sql
-    $password = secured_hash($_REQUEST['password']);
-    
+function unsuscribe(){ 
     //Check si el user existe en la DB
     //Realizamos la consulta para recibir los datos del usuario cuyo email coincida
-    $query =  "UPDATE *
-              FROM  users 
-              SET isActive=0 
-              WHERE user=? AND passwd = ?";
-
+    $query =  'UPDATE users   
+               SET isActive = 0 
+               WHERE user_id = ? 
+               AND passwd = ?';
+    require(ROOT .'code/config.php');  
     $stmt = $pdo->prepare($query);
-    $stmt->execute([$username, $password]);
-    //$result = $pdo->query($query) or die($con->error);
+    $password = secured_hash($_REQUEST['password']);
+    $stmt->execute([$_SESSION['user_id'], $password]);
+    if ($stmt->rowCount()){
+        return true;
+    }
+    return false;
 }
 ?>

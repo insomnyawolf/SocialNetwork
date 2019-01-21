@@ -8,6 +8,14 @@ if(!!!isset($_SESSION["user_id"])){
         require_once("./helper.php");
         if(isset($_FILES["avatar"]["name"])){
             require_once('./avatar.php');
+        }else if($_REQUEST["what"] == "unsuscribe"){
+            if(unsuscribe()){
+                if(session_destroy()) { 
+                    header("Location: /login.php");
+                }
+            }else{
+                header("Location: ./../settings.php");
+            }
         }else{
             $date = strtotime($_REQUEST["fecha_nac"]);
             $sql = "UPDATE users SET nombre=?, apellido=?, domicilio=?, fecha_nac=?, telefono=?, movil=?, dni=? WHERE user_id=?";

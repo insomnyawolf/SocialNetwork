@@ -33,6 +33,20 @@
                     </form>
                 </div>
             </div>
+            <br />
+            <div class="w3-card w3-round w3-white">
+                <div class="w3-container w3-padding">
+                    <h3 class="w3-opacity">Desactivar cuenta</h3>
+                    <form action="./code/settings.php" id="myForm" method="post" class="w3-container w3-padding w3-centered">
+                        <h6>Por favor, introduzca su contraseña antes de continuar</h6>
+                        <input name="what" id="what" type="text" class="w3-border w3-padding" value="unsuscribe" hidden/>
+                        <h4 class="inline-block w3-padding">Contraseña:</h4><input name="password" id="password" type="password" class="w3-border w3-padding"/><br /><br />
+                        <div class="full w3-padding">
+                            <button type="submit" id="submitFormData" class="w3-button isa_error"><i class="fa fa-pencil"></i> &nbsp;Desactivar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 <!--Fin Columna Enmedio-->
