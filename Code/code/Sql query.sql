@@ -11,6 +11,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `telefono` varchar(30),
   `movil` varchar(30),
   `dni` varchar(30),
+  `isActive` boolean DEFAULT TRUE,
   `isCAT` boolean DEFAULT FALSE,
   `passwd` varchar(128) NOT NULL,
   PRIMARY KEY  (`user_id`)

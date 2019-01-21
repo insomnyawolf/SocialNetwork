@@ -36,7 +36,9 @@ function login(){
     $query =  "SELECT *
               FROM  users 
               WHERE user = ?
-              AND passwd = ?";
+              AND passwd = ?
+              AND isActive = 1
+                ";
     $stmt = $pdo->prepare($query);
     $stmt->execute([$username, $password]);
     //$result = $pdo->query($query) or die($con->error);
