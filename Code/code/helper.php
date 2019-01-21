@@ -93,4 +93,20 @@ function register(){
     }
     return false;
 }
+function unsuscribe(){
+    require_once('./code/config.php');
+    //Evitar injeccion de sql
+    $password = secured_hash($_REQUEST['password']);
+    
+    //Check si el user existe en la DB
+    //Realizamos la consulta para recibir los datos del usuario cuyo email coincida
+    $query =  "UPDATE *
+              FROM  users 
+              SET isActive=0 
+              WHERE user=? AND passwd = ?";
+
+    $stmt = $pdo->prepare($query);
+    $stmt->execute([$username, $password]);
+    //$result = $pdo->query($query) or die($con->error);
+}
 ?>
