@@ -11,7 +11,7 @@ if(!!!isset($_SESSION["user_id"])){
         }else{
             $date = strtotime($_REQUEST["fecha_nac"]);
             $sql = "UPDATE users SET nombre=?, apellido=?, domicilio=?, fecha_nac=?, telefono=?, movil=?, dni=? WHERE user_id=?";
-            $stmt= $pdo->prepare($sql);
+            $stmt= $pdo->prepare($sql); //prepared statement para actualizar el usuario
             $stmt->execute([$_REQUEST["nombre"], 
                             $_REQUEST["apellido"], 
                             $_REQUEST["domicilio"], 
@@ -21,7 +21,7 @@ if(!!!isset($_SESSION["user_id"])){
                             $_REQUEST["dni"], 
                             $_SESSION["user_id"]]
                         );
-            if ($stmt->rowCount()){
+            if ($stmt->rowCount()){ //Para ver cuantas lineas se han modificado
                 $_SESSION["nombre"] = $_REQUEST["nombre"];
                 $_SESSION["apellido"] = $_REQUEST["apellido"];
                 $_SESSION["domicilio"] = $_REQUEST["domicilio"];
