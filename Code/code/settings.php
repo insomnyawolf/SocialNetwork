@@ -8,9 +8,9 @@ if(!!!isset($_SESSION["user_id"])){
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
         require_once("./config.php");
         require_once("./helper.php");
-        if(isset($_FILES["avatar"]["name"])){
+        if(isset($_FILES["avatar"]["name"])){ //Si el avatar tiene nombre
             require_once('./avatar.php');
-        }else if($_REQUEST["what"] == "unsuscribe"){
+        }else if($_REQUEST["what"] == "unsuscribe"){ //Si el usuario elije darse de baja te carga el código
             if(unsuscribe()){
                 if(session_destroy()) { 
                     header("Location: /login.php");
