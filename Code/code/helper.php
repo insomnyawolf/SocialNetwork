@@ -101,12 +101,12 @@ function unsuscribe(){
                WHERE user_id = ? 
                AND passwd = ?';
     require(ROOT .'code/config.php');  
-    $stmt = $pdo->prepare($query);
+    $stmt = $pdo->prepare($query); //Prepared Statement con la query 
     $password = secured_hash($_REQUEST['password']);
     $stmt->execute([$_SESSION['user_id'], $password]);
-    if ($stmt->rowCount()){
-        return true;
+    if ($stmt->rowCount()){ //Si algo ha cambiado
+        return true; //devuelve verdadero
     }
-    return false;
+    return false; //sino devuelve falso
 }
 ?>
