@@ -12,6 +12,9 @@
                     <button class="tablinks" onclick="openCity(event, 'userSettings')">Ajustes Generales</button>
                     <button class="tablinks" onclick="openCity(event, 'avatar')">Avatar</button>
                     <button class="tablinks" onclick="openCity(event, 'danger')">Privacidad</button>
+                    <?php if($_SESSION["isCAT"] == 1){?>
+                            <button class="tablinks" onclick="openCity(event, 'QAT')">QAT Settings</button>
+                    <?php } ?>
                 </div>
             </div>
             <br />
@@ -57,6 +60,20 @@
                 </div>
             </div>
             <!-- DangerZone End -->
+            <!-- QAT -->
+            <?php if($_SESSION["isCAT"]){?>
+                <div id="QAT" class="w3-card w3-round w3-white tabcontent">
+                <div class="w3-container w3-padding">
+                    <h3 class="w3-opacity">QAT:</h3>
+                    <form action="./code/settings.php" id="myForm" method="post" class="w3-container w3-padding w3-centered">
+                        <h6>Editar Usuario</h6>
+                        <h4 class="inline-block w3-padding">ID:</h4><h4 class="inline-block w3-border quarter">&nbsp;</h4><br /><br />
+                        <h4 class="inline-block w3-padding">Username:</h4><input name="nombre" id="nombre" type="text" class="w3-border w3-padding"/><br /><br />
+                    </form>
+                </div>
+            </div>  
+            <?php }?>
+            <!-- QAT End -->
         </div>
     </div>
 <!--Fin Columna Enmedio-->
