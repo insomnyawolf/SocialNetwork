@@ -49,12 +49,12 @@
             <div id="danger" class="w3-card w3-round w3-white tabcontent">
                 <div class="w3-container w3-padding">
                     <h3 class="w3-opacity">Desactivar cuenta:</h3>
-                    <form action="./code/settings.php" id="myForm" method="post" class="w3-container w3-padding w3-centered">
+                    <form action="./code/settings.php" id="DeactivateForm" method="post" class="w3-container w3-padding w3-centered">
                         <h6>Por favor, introduzca su contraseña antes de continuar</h6>
                         <input name="what" id="what" type="text" class="w3-border w3-padding" value="unsuscribe" hidden/>
                         <h4 class="inline-block w3-padding">Contraseña:</h4><input name="password" id="password" type="password" class="w3-border w3-padding"/><br /><br />
                         <div class="full w3-padding">
-                            <button type="submit" id="submitFormData" class="w3-button isa_error"><i class="fa fa-pencil"></i> &nbsp;Desactivar</button>
+                            <button type="submit" id="submitFormDataDeactivate" class="w3-button isa_error"><i class="fa fa-pencil"></i> &nbsp;Desactivar</button>
                         </div>
                     </form>
                 </div>
@@ -65,10 +65,11 @@
                 <div id="QAT" class="w3-card w3-round w3-white tabcontent">
                 <div class="w3-container w3-padding">
                     <h3 class="w3-opacity">QAT:</h3>
-                    <form action="./code/settings.php" id="myForm" method="post" class="w3-container w3-padding w3-centered">
+                    <script src="/static/js/qat.js"></script>
+                    <form action="./code/settings.php" id="editUSER" method="post" class="w3-container w3-padding w3-centered" onsubmit="event.preventDefault();loadUSER();">
                         <h6>Editar Usuario</h6>
                         <h4 class="inline-block w3-padding">ID:</h4><h4 class="inline-block w3-border quarter">&nbsp;</h4><br /><br />
-                        <h4 class="inline-block w3-padding">Username:</h4><input name="nombre" id="nombre" type="text" class="w3-border w3-padding"/><br /><br />
+                        <h4 class="inline-block w3-padding">Username:</h4><input name="EditUser" id="EditUser" type="text" class="w3-border w3-padding"/><br /><br />
                     </form>
                 </div>
             </div>  
