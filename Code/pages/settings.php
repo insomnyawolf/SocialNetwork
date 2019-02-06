@@ -66,11 +66,13 @@
                 <div class="w3-container w3-padding">
                     <h3 class="w3-opacity">QAT:</h3>
                     <script src="./static/js/qat.js"></script>
-                    <form action="./code/settings.php" id="editUSER" method="post" class="w3-container w3-padding w3-centered" onsubmit="event.preventDefault();loadUSER();">
-                        <h6>Editar Usuario</h6>
-                        <h4 class="inline-block w3-padding">ID:</h4><h4 class="inline-block w3-border quarter">&nbsp;</h4><br /><br />
-                        <h4 class="inline-block w3-padding">Username:</h4><input name="EditUser" id="EditUser" type="text" class="w3-border w3-padding"/><br /><br />
-                    </form>
+                    <div id="editUSER">
+                        <form id="SearchData" method="post" class="w3-container w3-padding w3-centered" onsubmit="event.preventDefault();loadUSER();">
+                            <h6>Editar Usuario</h6>
+                            <h4 class="inline-block w3-padding">ID:</h4><h4 class="inline-block w3-border quarter">&nbsp;</h4><br /><br />
+                            <h4 class="inline-block w3-padding">Username:</h4><input name="EditUser" id="EditUser" type="text" class="w3-border w3-padding"/><br /><br />
+                        </form>
+                    </div>
                 </div>
             </div>  
             <?php }?>
