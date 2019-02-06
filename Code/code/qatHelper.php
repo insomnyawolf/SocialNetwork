@@ -1,24 +1,40 @@
 <?php
-if(isset($_SESSION["user_id"]) && $_SESSION["isCAT"])){
+session_start();
+require_once("./helper.php");
+if(isset($_SESSION["user_id"]) && ($_SESSION["isCAT"])){
     if($_SESSION["isCAT"]==1){ 
-        if($_SERVER['REQUEST_METHOD'] == 'POST'){
-
+        if($_SERVER['REQUEST_METHOD'] == 'POST' || $_SERVER['REQUEST_METHOD'] == 'GET' ){
+            if($_REQUEST['func'] == "loadUser"){
+                getuser($_REQUEST['user']);
+            }else{
+                echo("You should not be here.". $_REQUEST);
+            }
+        }else{
+            echo("You should not be here.". $_REQUEST);
         }
+    }else{
+        echo("You should not be here.". $_REQUEST);
     }
-    header("Location: ./index.php");
 }
-function getuser(){
+function isActive($val){
+    if($val == 1){
+        return "checked";
+    }
+    return "";
+}
+function getuser($name){
+    require(ROOT .'code/config.php');
     $query =  "SELECT *
     FROM  users 
     WHERE user = ?";
     $stmt = $pdo->prepare($query);
-    $stmt->execute([$username, $password]);
+    $stmt->execute([$name]);
     //$result = $pdo->query($query) or die($con->error);
     while ($row = $stmt->fetch()){
     //`user_id`, `user`, `passwd`, `avatarID`, `nombre`, `apellido`, `domicilio`, `fecha_nac`, `telefono`, `movil`, `dni`, `isCAT`, `isActive`
     ?>
         <h6>Editar Usuario</h6>
-        <h4 class="inline-block w3-padding">ID:</h4><h4 class="inline-block w3-border quarter" id="EditUserID"><?php echo('"'.$row["user_id"].'"');?> </h4><br /><br />
+        <h4 class="inline-block w3-padding">ID:</h4><input name="EditUser" id="EditUser" type="text" class="w3-border w3-padding" value=<?php echo($row["user_id"]);?>  readonly /><br /><br />
         <h4 class="inline-block w3-padding">Username:</h4><input name="EditUser" id="EditUser" type="text" class="w3-border w3-padding" value=<?php echo('"'.$row["user"].'"');?> /><br /><br />
         <h4 class="inline-block w3-padding">Nombre:</h4><input name="EditNombre" id="EditNombre" type="text" class="w3-border w3-padding" value=<?php echo('"'.$row["nombre"].'"');?> /><br /><br />
         <h4 class="inline-block w3-padding">Apellido:</h4><input name="EditApellido" id="EditApellido" type="text" class="w3-border w3-padding" value=<?php echo('"'.$row["apellido"].'"');?> /><br /><br />
@@ -31,12 +47,5 @@ function getuser(){
         <div class="full w3-padding">
             <button type="submit" id="submitFormData" class="w3-button isa_error"><i class="fa fa-pencil"></i> &nbsp;Confirmar Cambios</button>
         </div>
-<?php 
-} 
-function isActive($val){
-    if($val == 1){
-        return "checked";
-    }
-    return "";
-}
-?>
+<?php }
+    } ?>
