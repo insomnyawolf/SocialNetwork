@@ -7,13 +7,13 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.4.3/cropper.css" />
         <div class="w3-col m12">
             <div class="w3-card w3-round w3-white">
-                <script src="/static/js/tabSwitch.js"></script>
+                <script src="./static/js/tabSwitch.js"></script>
                 <div class="tab">
-                    <button class="tablinks" onclick="openCity(event, 'userSettings')">Ajustes Generales</button>
-                    <button class="tablinks" onclick="openCity(event, 'avatar')">Avatar</button>
-                    <button class="tablinks" onclick="openCity(event, 'danger')">Privacidad</button>
+                    <button class="tablinks" onclick="tabSwitch(event, 'userSettings')">Ajustes Generales</button>
+                    <button class="tablinks" onclick="tabSwitch(event, 'avatar')">Avatar</button>
+                    <button class="tablinks" onclick="tabSwitch(event, 'danger')">Privacidad</button>
                     <?php if($_SESSION["isCAT"] == 1){?>
-                            <button class="tablinks" onclick="openCity(event, 'QAT')">QAT Settings</button>
+                            <button class="tablinks" onclick="tabSwitch(event, 'QAT')">QAT Settings</button>
                     <?php } ?>
                 </div>
             </div>
@@ -65,7 +65,7 @@
                 <div id="QAT" class="w3-card w3-round w3-white tabcontent">
                 <div class="w3-container w3-padding">
                     <h3 class="w3-opacity">QAT:</h3>
-                    <script src="/static/js/qat.js"></script>
+                    <script src="./static/js/qat.js"></script>
                     <form action="./code/settings.php" id="editUSER" method="post" class="w3-container w3-padding w3-centered" onsubmit="event.preventDefault();loadUSER();">
                         <h6>Editar Usuario</h6>
                         <h4 class="inline-block w3-padding">ID:</h4><h4 class="inline-block w3-border quarter">&nbsp;</h4><br /><br />
