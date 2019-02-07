@@ -51,7 +51,14 @@
                 <div class="w3-container w3-padding">
                     <h3 class="w3-opacity">Añadir cuenta:</h3>
                     <form action="./code/settings.php" id="addAcount" method="post" class="w3-container w3-padding w3-centered">
-                        
+                    <h4 class="inline-block w3-padding">Dinero:</h4><h4 class="inline-block w3-border quarter">&nbsp;</h4><br /><br />
+                    </form>
+                </div>
+                <div class="w3-container w3-padding">
+                    <h3 class="w3-opacity">Tus cuentas:</h3>
+                    <form action="./code/settings.php" id="addAcount" method="post" class="w3-container w3-padding w3-centered">
+                    <h4 class="inline-block w3-padding">ID:</h4><h4 class="inline-block w3-border quarter">&nbsp;</h4><br /><br />
+                    <h4 class="inline-block w3-padding">Dinero:</h4><h4 class="inline-block w3-border quarter">&nbsp;</h4><br /><br />
                     </form>
                 </div>
             </div>
