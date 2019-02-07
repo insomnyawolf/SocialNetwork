@@ -34,6 +34,12 @@ function editUSER() {
   }else{
     active=0;
   }
+  var isCAT;
+  if (document.getElementById("EditIsCAT").checked){
+    isCAT=1;
+  }else{
+    isCAT=0;
+  }
   xhttp.send(param({
     'func': 'editUser',
     'EditUserID': document.getElementById("EditUserID").value,
@@ -45,9 +51,11 @@ function editUSER() {
     'EditTelefono': document.getElementById("EditTelefono").value,
     'EditDNI': document.getElementById("EditDNI").value,
     'EditIsActive': active,
+    'EditIsCAT': isCAT,
   }));
 return false;
 }
+//Parsear los datos a editar a datos de formulario
 function param(object) {
   var encodedString = '';
   for (var prop in object) {

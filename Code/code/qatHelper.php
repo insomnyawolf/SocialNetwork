@@ -18,7 +18,7 @@ if(isset($_SESSION["user_id"]) && ($_SESSION["isCAT"])){
         echo("You should not be here.". $_REQUEST);
     }
 }
-function isActive($val){
+function isChecked($val){
     if($val == 1){
         return "checked";
     }
@@ -27,7 +27,7 @@ function isActive($val){
 function editUser(){
     require(ROOT .'code/config.php');
     $date = strtotime($_REQUEST["EditFecha_nac"]);
-    $sql = "UPDATE users SET user=?, nombre=?, apellido=?, domicilio=?, fecha_nac=?, telefono=?, movil=?, dni=?, isActive=? WHERE user_id=?";
+    $sql = "UPDATE users SET user=?, nombre=?, apellido=?, domicilio=?, fecha_nac=?, telefono=?, movil=?, dni=?, isActive=?, isCAT=? WHERE user_id=?";
     $stmt= $pdo->prepare($sql); //prepared statement para actualizar el usuario
     $stmt->execute([$_REQUEST["EditUser"], 
                     $_REQUEST["EditNombre"], 
@@ -37,7 +37,8 @@ function editUser(){
                     $_REQUEST["EditTelefono"],
                     $_REQUEST["EditMovil"],
                     $_REQUEST["EditDNI"], 
-                    $_REQUEST["EditIsActive"], 
+                    $_REQUEST["EditIsActive"],
+                    $_REQUEST["EditIsCAT"],
                     $_REQUEST["EditUserID"]]
                     );
     if ($stmt->rowCount()){ //Para ver cuantas lineas se han modificado ?>
@@ -74,7 +75,8 @@ function getuser(){
         <h4 class="inline-block w3-padding">Telefono:</h4><input name="EditTelefono" id="EditTelefono" type="text" class="w3-border w3-padding" value=<?php echo('"'.$row["telefono"].'"');?> /><br /><br />
         <h4 class="inline-block w3-padding">Movil:</h4> <input name="EditMovil" id="EditMovil" type="text" class="w3-border w3-padding" value=<?php echo('"'.$row["movil"].'"');?> /><br /><br />
         <h4 class="inline-block w3-padding">DNI:</h4><input name="EditDNI" id="EditDNI" type="text" class="w3-border w3-padding" value=<?php echo('"'.$row["dni"].'"');?> /><br /><br />
-        <h4 class="inline-block w3-padding">Is Active:</h4><input name="EditIsActive" id="EditIsActive" type="checkbox" class="w3-border w3-padding" <?php echo(isActive($row["isActive"])) ?> /><br /><br />
+        <h4 class="inline-block w3-padding">Is Active:</h4><input name="EditIsActive" id="EditIsActive" type="checkbox" class="w3-border w3-padding" <?php echo(isChecked($row["isActive"])) ?> /><br /><br />
+        <h4 class="inline-block w3-padding">Is CAT:</h4><input name="EditIsCAT" id="EditIsCAT" type="checkbox" class="w3-border w3-padding" <?php echo(isChecked($row["isCAT"])) ?> /><br /><br />
         <div class="full w3-padding">
             <button type="submit" id="submitFormData" class="w3-button isa_error"><i class="fa fa-pencil"></i> &nbsp;Confirmar Cambios</button>
         </div>
