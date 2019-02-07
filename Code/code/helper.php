@@ -110,4 +110,14 @@ function unsuscribe(){
     return false; //sino devuelve falso
 }
 
+function AddCount(){ //Añade una cuenta de un cliente a la base de datos 
+    $query = 'INSERT INTO accounts(user_id, balance) VALUES 
+                (?,?)';
+    require(ROOT .'code/config.php');
+    $stmt = $pdo->prepare($query); //Prepared Statement con la query
+    $stmt->execute([$_SESSION['user_id'], $balance]);
+    if ($stmt->rowCount()){ //Si algo ha cambiado
+        return true; //devuelve verdadero
+    }
+    return false; //sino devuelve falso
 ?>
