@@ -10,7 +10,7 @@ if(!!!isset($_SESSION["user_id"])){
         require_once("./helper.php");
         if(isset($_FILES["avatar"]["name"])){ //Si el avatar tiene nombre
             require_once('./avatar.php');
-        }else if($_REQUEST["what"] == "unsuscribe"){ //Si el usuario elije darse de baja te carga el código
+        }else if($_REQUEST["func"] == "unsuscribe"){ //Si el usuario elije darse de baja te carga el código
             if(unsuscribe()){
                 if(session_destroy()) { 
                     header("Location: ./../login.php");
@@ -18,7 +18,13 @@ if(!!!isset($_SESSION["user_id"])){
             }else{
                 header("Location: ./../settings.php");
             }
-        }else{
+        }else if($_REQUEST["func"] == "addAccount"){ //Si el usuario elije darse de baja te carga el código
+            if(addAccount()){
+                echo("<h3>Se Añadio correctamente la cuenta</h3>");
+            }else{
+                echo("<h3>Ha ocurrido un error</h3>");
+            }
+        }else if($_REQUEST["func"] == "editUser"){
             $date = strtotime($_REQUEST["fecha_nac"]);
             $sql = "UPDATE users SET nombre=?, apellido=?, domicilio=?, fecha_nac=?, telefono=?, movil=?, dni=? WHERE user_id=?";
             $stmt= $pdo->prepare($sql); //prepared statement para actualizar el usuario
@@ -41,6 +47,8 @@ if(!!!isset($_SESSION["user_id"])){
                 $_SESSION["dni"] = $_REQUEST["dni"];
                 header("Location: ./../settings.php");
             }
+        }else{
+            echo("<h1>ERROR!</h1>");
         }
     }
 }
