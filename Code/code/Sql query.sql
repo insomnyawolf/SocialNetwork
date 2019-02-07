@@ -15,14 +15,15 @@ CREATE TABLE IF NOT EXISTS `users` (
   `isCAT` boolean DEFAULT FALSE,
   `passwd` varchar(128) NOT NULL,
   PRIMARY KEY  (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 CREATE TABLE IF NOT EXISTS `accounts` (
-  `user_id` int(11) NOT NULL auto_increment,
-  `accounts_id` int(11) NOT NULL,
+  `accounts_id` int(11) NOT NULL auto_increment,
+  `user_id` int(11) NOT NULL,
   `balance` decimal(12,2) NOT NULL,
-  PRIMARY KEY  (`user_id`, `accounts_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+  PRIMARY KEY  (`accounts_id`, `user_id`),
+  FOREIGN KEY (`user_id`) REFERENCES users(user_id)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 CREATE TABLE IF NOT EXISTS `historico` (
   `trans_id` int(11) NOT NULL auto_increment,
@@ -31,4 +32,4 @@ CREATE TABLE IF NOT EXISTS `historico` (
   `comision` decimal(12,2) NOT NULL,
   `fecha` datetime NOT NULL,
   PRIMARY KEY  (`trans_id`, `user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
