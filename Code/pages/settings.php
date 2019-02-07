@@ -11,6 +11,7 @@
                 <div class="tab">
                     <button class="tablinks" onclick="tabSwitch(event, 'userSettings')">Ajustes Generales</button>
                     <button class="tablinks" onclick="tabSwitch(event, 'avatar')">Avatar</button>
+                    <button class="tablinks" onclick="tabSwitch(event, 'cuentas')">Cuentas</button>
                     <button class="tablinks" onclick="tabSwitch(event, 'danger')">Privacidad</button>
                     <?php if($_SESSION["isCAT"] == 1){?>
                             <button class="tablinks" onclick="tabSwitch(event, 'QAT')">QAT Settings</button>
@@ -45,6 +46,16 @@
                 </div>
             </div>
             <!--Image crop end-->
+            <!-- Cuentas -->
+            <div id="cuentas" class="w3-card w3-round w3-white tabcontent">
+                <div class="w3-container w3-padding">
+                    <h3 class="w3-opacity">Añadir cuenta:</h3>
+                    <form action="./code/settings.php" id="addAcount" method="post" class="w3-container w3-padding w3-centered">
+                        
+                    </form>
+                </div>
+            </div>
+            <!-- Cuentas End -->
             <!-- DangerZone -->
             <div id="danger" class="w3-card w3-round w3-white tabcontent">
                 <div class="w3-container w3-padding">
