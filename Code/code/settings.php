@@ -13,7 +13,7 @@ if(!!!isset($_SESSION["user_id"])){
         }else if($_REQUEST["what"] == "unsuscribe"){ //Si el usuario elije darse de baja te carga el código
             if(unsuscribe()){
                 if(session_destroy()) { 
-                    header("Location: /login.php");
+                    header("Location: ./../login.php");
                 }
             }else{
                 header("Location: ./../settings.php");
