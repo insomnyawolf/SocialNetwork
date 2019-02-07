@@ -5,6 +5,7 @@
     <div class="w3-row-padding">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.4.3/cropper.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.4.3/cropper.css" />
+        <script src="./static/js/user.js"></script>
         <div class="w3-col m12">
             <div class="w3-card w3-round w3-white">
                 <script src="./static/js/tabSwitch.js"></script>
@@ -48,10 +49,10 @@
             <!--Image crop end-->
             <!-- Cuentas -->
             <div id="cuentas" class="w3-card w3-round w3-white tabcontent">
-                <div class="w3-container w3-padding">
+                <div class="w3-container w3-padding" id="addAccount">
                     <h3 class="w3-opacity">Añadir cuenta:</h3>
-                    <form action="./code/settings.php" id="addAcount" method="post" class="w3-container w3-padding w3-centered">
-                        
+                    <form action="./code/settings.php" method="post" class="w3-container w3-padding w3-centered" onsubmit="event.preventDefault();addAcount();">
+                        <button type="submit" class="w3-button w3-theme"> &nbsp;Añadir Cuenta</button>
                     </form>
                 </div>
             </div>

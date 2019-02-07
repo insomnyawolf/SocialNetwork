@@ -110,7 +110,7 @@ function unsuscribe(){
     return false; //sino devuelve falso
 }
 
-function AddCount(){ //Añade una cuenta de un cliente a la base de datos 
+function addAccount(){ //Añade una cuenta de un cliente a la base de datos 
     $query = 'INSERT INTO accounts(user_id, balance) VALUES (?,?)';
     require(ROOT .'code/config.php');
     $stmt = $pdo->prepare($query); //Prepared Statement con la query
