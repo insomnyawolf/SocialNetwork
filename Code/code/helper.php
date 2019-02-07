@@ -115,7 +115,7 @@ function AddCount(){ //Añade una cuenta de un cliente a la base de datos
                 (?,?)';
     require(ROOT .'code/config.php');
     $stmt = $pdo->prepare($query); //Prepared Statement con la query
-    $stmt->execute([$_SESSION['user_id'], $balance]);
+    $stmt->execute([$_SESSION['user_id'], 0]);
     if ($stmt->rowCount()){ //Si algo ha cambiado
         return true; //devuelve verdadero
     }
