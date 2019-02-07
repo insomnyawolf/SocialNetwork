@@ -51,8 +51,15 @@
             <div id="cuentas" class="w3-card w3-round w3-white tabcontent">
                 <div class="w3-container w3-padding" id="addAccount">
                     <h3 class="w3-opacity">Añadir cuenta:</h3>
-                    <form action="./code/settings.php" method="post" class="w3-container w3-padding w3-centered" onsubmit="event.preventDefault();addAcount();">
+                    <form method="post" class="w3-container w3-padding w3-centered" onsubmit="event.preventDefault();addAcount();">
                         <button type="submit" class="w3-button w3-theme"> &nbsp;Añadir Cuenta</button>
+                    </form>
+                </div>
+                <div class="w3-container w3-padding">
+                    <h3 class="w3-opacity">Tus cuentas:</h3>
+                    <form id="showAcounts" method="post" class="w3-container w3-padding w3-centered">
+                    <h4 class="inline-block w3-padding">ID:</h4><h4 class="inline-block w3-border quarter">&nbsp;</h4><br /><br />
+                    <h4 class="inline-block w3-padding">Dinero:</h4><h4 class="inline-block w3-border quarter">&nbsp;</h4><br /><br />
                     </form>
                 </div>
             </div>
