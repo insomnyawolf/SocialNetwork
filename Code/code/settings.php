@@ -24,7 +24,9 @@ if(!!!isset($_SESSION["user_id"])){
             }else{
                 echo("<h3>Ha ocurrido un error</h3>");
             }
-        }else if($_REQUEST["func"] == "refreshAcounts"){ //Si el usuario elije darse de baja te carga el código
+        }else if($_REQUEST["func"] == "refreshAcounts"){
+            //func es el nombre que estamos utilizando para poder elegir que funcion utilizar
+            //Aqui el usuario ha pulsado refresh por lo que se mostrarán tantas cuentas como hayamos añadido
             getAccounts();
         }else if($_REQUEST["func"] == "addMoney"){ //Si el usuario elije darse de baja te carga el código
             addMoney();
