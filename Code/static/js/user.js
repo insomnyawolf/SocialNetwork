@@ -44,3 +44,49 @@ function refreshAcounts() {
   }));
 return false;
 }
+function addMoney(AccountID) {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+     document.getElementById("form"+AccountID).innerHTML = this.responseText;
+  }/*else{
+      alert('Request failed.  Returned status of ' + xhttp.status);
+    }*/
+  };
+  xhttp.open("POST", "./code/settings.php", true);
+  xhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  var cantidad = document.getElementById("cantidad"+AccountID).value;
+  if (cantidad > 0){
+    xhttp.send(param({
+      'func': 'addMoney',
+      'accounts_id': AccountID,
+      'amount': cantidad,
+    }));
+  }else{
+    alert("Debe introducir una cantidad superior a 0");
+  }
+return false;
+}
+function takeMoney(AccountID) {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+     document.getElementById("form"+AccountID).innerHTML = this.responseText;
+  }/*else{
+      alert('Request failed.  Returned status of ' + xhttp.status);
+    }*/
+  };
+  xhttp.open("POST", "./code/settings.php", true);
+  xhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  var cantidad = document.getElementById("cantidad"+AccountID).value;
+  if (cantidad > 0){
+    xhttp.send(param({
+      'func': 'takeMoney',
+      'accounts_id': AccountID,
+      'amount': cantidad,
+    }));
+  }else{
+    alert("Debe introducir una cantidad superior a 0");
+  }
+return false;
+}

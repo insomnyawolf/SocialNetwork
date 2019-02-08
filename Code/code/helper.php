@@ -121,22 +121,25 @@ function addAccount(){ //Añade una cuenta de un cliente a la base de datos
     return false; //sino devuelve falso
 }
 function addMoney(){
-    $query = 'SELECT * FROM accounts WHERE user_id = ? AND accounts_id = ?';
+    require(ROOT .'code/config.php');
+    $query = 'SELECT balance FROM accounts WHERE user_id = ? AND accounts_id = ?';
     $stmt = $pdo->prepare($query); //Prepared Statement con la query
     $stmt->execute([$_SESSION['user_id'], $_REQUEST['accounts_id']]);
     if($stmt->rowCount()){
         if($_REQUEST['amount'] > 0){
+            $row = $stmt->fetch();
             $balance = $row["balance"] + $_REQUEST['amount'];
             $row = $stmt->fetch(); //Cursor stmt y row son las filas de la query
-            $query2 =   'UPDATE accounts   
-                    SET balance = ?
-                    WHERE accounts_id = ?';
-            $stmt2 = $pdo->prepare($query); //Prepared Statement con la query
-            $stmt2->execute([$balance, $row["accounts_id"];]);
+            $query2 = 'UPDATE accounts   
+                       SET balance = ?
+                       WHERE accounts_id = ?';
+            $stmt2 = $pdo->prepare($query2); //Prepared Statement con la query
+            $stmt2->execute([$balance, $_REQUEST['accounts_id']]);
             if ($stmt2->rowCount()){ //Si algo ha cambiado
                 echo("Se ha ingresado su dinero satisfactoriamente."); 
             }else{
                 echo("Ha ocurrido un error al añadir su dinero"); 
+                print_r($stmt2->errorInfo());
             }
         }else{
             echo("Por favor, al ingresar saldo añada una cantidad superior a 0");    
@@ -146,19 +149,21 @@ function addMoney(){
     }
 }
 function takeMoney(){
-    $query = 'SELECT * FROM accounts WHERE user_id = ? AND accounts_id = ?';
+    require(ROOT .'code/config.php');
+    $query = 'SELECT balance FROM accounts WHERE user_id = ? AND accounts_id = ?';
     $stmt = $pdo->prepare($query); //Prepared Statement con la query
     $stmt->execute([$_SESSION['user_id'], $_REQUEST['accounts_id']]);
     if($stmt->rowCount()){
         if($_REQUEST['amount'] > 0){
+            $row = $stmt->fetch();
             $balance = $row["balance"] - $_REQUEST['amount'];
             if($balance > 0){
                 $row = $stmt->fetch(); //Cursor stmt y row son las filas de la query
                 $query2 =   'UPDATE accounts   
                         SET balance = ?
                         WHERE accounts_id = ?';
-                $stmt2 = $pdo->prepare($query); //Prepared Statement con la query
-                $stmt2->execute([$balance, $row["accounts_id"];]);
+                $stmt2 = $pdo->prepare($query2); //Prepared Statement con la query
+                $stmt2->execute([$balance, $_REQUEST['accounts_id']]);
                 if ($stmt2->rowCount()){ //Si algo ha cambiado
                     echo("Se ha retirado su dinero satisfactoriamente."); 
                 }else{
@@ -175,16 +180,19 @@ function takeMoney(){
     }
 }
 function getAccounts(){
+    require(ROOT .'code/config.php');
     $query = 'SELECT * FROM accounts WHERE user_id = ?';
     $stmt = $pdo->prepare($query); //Prepared Statement con la query
-    $stmt->execute([$_SESSION['user_id'], $_REQUEST['accounts_id']]);
+    $stmt->execute([$_SESSION['user_id']]);
     while ($row = $stmt->fetch()){
+        $cantidad = "cantidad" . $row['accounts_id'];
+        $form = "form" . $row['accounts_id'];
         ?>
-        <form method="post" class="w3-container w3-padding w3-centered" onsubmit="event.preventDefault();">
+        <form method="post" class="w3-container w3-padding w3-centered" id="<?php echo($form); ?>" onsubmit="event.preventDefault();">
             <h4 class="inline-block w3-padding">Balance:</h4><input type="text" class="w3-border w3-padding" value=<?php echo($row["balance"]);?>  readonly /><br /><br />
-            <h4 class="inline-block w3-padding">Cantidad:</h4><input name="nombre" id="nombre" type="text" class="w3-border w3-padding"/><br /><br />
-            <button type="submit" class="w3-button w3-theme" onclick="addMoney(<?php echo($_REQUEST['accounts_id']); ?>);"> &nbsp;Ingresar</button>
-            <button type="submit" class="w3-button w3-theme" onclick="takeMoney(<?php echo($_REQUEST['accounts_id']); ?>);"> &nbsp;Retirar</button>
+            <h4 class="inline-block w3-padding">Cantidad:</h4><input name="nombre" id="<?php echo($cantidad); ?>" type="text" class="w3-border w3-padding"/><br /><br />
+            <button type="submit" class="w3-button w3-theme" onclick="addMoney(<?php echo($row['accounts_id']); ?>);"> &nbsp;Ingresar</button>
+            <button type="submit" class="w3-button w3-theme" onclick="takeMoney(<?php echo($row['accounts_id']); ?>);"> &nbsp;Retirar</button>
         </form>
         <?php
     }
