@@ -111,10 +111,20 @@ function unsuscribe(){
 }
 
 function addAccount(){ //Añade una cuenta de un cliente a la base de datos 
-    $query = 'INSERT INTO accounts(user_id, balance) VALUES (?,?)';
     require(ROOT .'code/config.php');
+    $query = 'INSERT INTO accounts(user_id, balance) VALUES (?,?)';
     $stmt = $pdo->prepare($query); //Prepared Statement con la query
     $stmt->execute([$_SESSION['user_id'], 0]);
+    if ($stmt->rowCount()){ //Si algo ha cambiado
+        return true; //devuelve verdadero
+    }
+    return false; //sino devuelve falso
+}
+function DeleteAccount(){ //Borra una cuenta de un cliente de la base de datos 
+    require(ROOT .'code/config.php');
+    $query = 'DELETE FROM accounts WHERE user_id = ? AND accounts_id = ?;';
+    $stmt = $pdo->prepare($query); //Prepared Statement con la query
+    $stmt->execute([$_SESSION['user_id'], $_REQUEST['accounts_id']]);
     if ($stmt->rowCount()){ //Si algo ha cambiado
         return true; //devuelve verdadero
     }
@@ -193,6 +203,7 @@ function getAccounts(){
             <h4 class="inline-block w3-padding">Cantidad:</h4><input name="nombre" id="<?php echo($cantidad); ?>" type="text" class="w3-border w3-padding"/><br /><br />
             <button type="submit" class="w3-button w3-theme" onclick="addMoney(<?php echo($row['accounts_id']); ?>);"> &nbsp;Ingresar</button>
             <button type="submit" class="w3-button w3-theme" onclick="takeMoney(<?php echo($row['accounts_id']); ?>);"> &nbsp;Retirar</button>
+            <button type="submit" class="w3-button w3-theme" onclick="DeleteAcount(<?php echo($row['accounts_id']); ?>);"> &nbsp;Borrar Cuenta</button>
         </form>
         <?php
     }

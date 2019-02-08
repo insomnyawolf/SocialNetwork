@@ -14,6 +14,24 @@ function addAcount() {
     }));
   return false;
 }
+function DeleteAcount(AccountID) {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+     document.getElementById("form"+AccountID).innerHTML = this.responseText;
+  }/*else{
+      alert('Request failed.  Returned status of ' + xhttp.status);
+    }*/
+  };
+  xhttp.open("POST", "./code/settings.php", true);
+  xhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  var cantidad = document.getElementById("cantidad"+AccountID).value;
+  xhttp.send(param({
+    'func': 'deleteAccount',
+    'accounts_id': AccountID,
+  }));
+return false;
+}
 //Parsear los datos a editar a datos de formulario
 function param(object) {
   var encodedString = '';

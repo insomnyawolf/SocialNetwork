@@ -18,9 +18,15 @@ if(!!!isset($_SESSION["user_id"])){
             }else{
                 header("Location: ./../settings.php");
             }
-        }else if($_REQUEST["func"] == "addAccount"){ //Si el usuario elije darse de baja te carga el código
+        }else if($_REQUEST["func"] == "addAccount"){ //Si el usuario elije añadir cuenta te carga el código
             if(addAccount()){
                 echo("<h3>Se Añadio correctamente la cuenta</h3>");
+            }else{
+                echo("<h3>Ha ocurrido un error</h3>");
+            }
+        }else if($_REQUEST["func"] == "deleteAccount"){ //Si el usuario elije borrar cuenta te carga el código
+            if(DeleteAccount()){
+                echo("<h3>Se Borró correctamente la cuenta</h3>");
             }else{
                 echo("<h3>Ha ocurrido un error</h3>");
             }
