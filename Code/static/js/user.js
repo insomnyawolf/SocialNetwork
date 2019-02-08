@@ -28,3 +28,19 @@ function param(object) {
   //alert(encodedString)
   return encodedString;
 }
+function refreshAcounts() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+     document.getElementById("tusCuentas").innerHTML = this.responseText;
+  }/*else{
+      alert('Request failed.  Returned status of ' + xhttp.status);
+    }*/
+  };
+  xhttp.open("POST", "./code/settings.php", true);
+  xhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  xhttp.send(param({
+    'func': 'refreshAcounts',
+  }));
+return false;
+}

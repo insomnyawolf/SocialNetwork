@@ -57,10 +57,9 @@
                 </div>
                 <div class="w3-container w3-padding">
                     <h3 class="w3-opacity">Tus cuentas:</h3>
-                    <form id="showAcounts" method="post" class="w3-container w3-padding w3-centered">
-                    <h4 class="inline-block w3-padding">ID:</h4><h4 class="inline-block w3-border quarter">&nbsp;</h4><br /><br />
-                    <h4 class="inline-block w3-padding">Dinero:</h4><h4 class="inline-block w3-border quarter">&nbsp;</h4><br /><br />
-                    </form>
+                    <button onclick="refreshAcounts();"></button>
+                    <div id="tusCuentas">
+                    </div>
                 </div>
             </div>
             <!-- Cuentas End -->

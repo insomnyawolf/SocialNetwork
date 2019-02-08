@@ -24,6 +24,8 @@ if(!!!isset($_SESSION["user_id"])){
             }else{
                 echo("<h3>Ha ocurrido un error</h3>");
             }
+        }else if($_REQUEST["func"] == "refreshAcounts"){ //Si el usuario elije darse de baja te carga el código
+            getAccounts();
         }else if($_REQUEST["func"] == "editUser"){
             $date = strtotime($_REQUEST["fecha_nac"]);
             $sql = "UPDATE users SET nombre=?, apellido=?, domicilio=?, fecha_nac=?, telefono=?, movil=?, dni=? WHERE user_id=?";
