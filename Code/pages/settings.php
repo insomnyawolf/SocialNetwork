@@ -56,7 +56,10 @@
                     </form>
                 </div>
                 <div class="w3-container w3-padding">
-                    <h3 class="w3-opacity">Tus cuentas: <button class="w3-button w3-theme" onclick="refreshAcounts();">Refresh</button></h3>
+                    <h3 class="w3-opacity">Tus cuentas: 
+                        <button class="w3-button w3-theme" onclick="refreshAcounts();">Refresh</button>
+                        <button class="w3-button w3-theme" onclick="HideAccounts();">Hide</button>
+                    </h3>
                     <div id="tusCuentas">
                     </div>
                 </div>

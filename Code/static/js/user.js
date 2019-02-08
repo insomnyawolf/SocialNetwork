@@ -42,6 +42,10 @@ function refreshAcounts() {
   xhttp.send(param({
     'func': 'refreshAcounts',
   }));
+  var x = document.getElementById("tusCuentas");
+  if (x.style.display === "none"){
+    x.style.display = "block";
+  }
 return false;
 }
 function addMoney(AccountID) {
@@ -89,4 +93,12 @@ function takeMoney(AccountID) {
     alert("Debe introducir una cantidad superior a 0");
   }
 return false;
+}
+function HideAccounts(){
+  var x = document.getElementById("tusCuentas");
+  if (x.style.display === "none"){
+    x.style.display = "block";
+  }else{
+    x.style.display = "none";
+  }
 }
