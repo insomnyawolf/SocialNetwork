@@ -338,9 +338,9 @@ function venderAccion(){
                 $stmt2 = $pdo->prepare($query2); //Prepared Statement con la query
                 $stmt2->execute([$balance, $_REQUEST['accounts_id']]);
                 if ($stmt2->rowCount()){ //Si algo ha cambiado
-                    echo("Se han comprado acciones satisfactoriamente."); 
+                    echo("Se han vendido acciones satisfactoriamente."); 
                 }else{
-                    echo("Ha ocurrido un error al comprar acciones"); 
+                    echo("Ha ocurrido un error al vender acciones"); 
                 }
         }else{
             echo("No dispones de suficientes acciones para realizar esta operacion."); 
