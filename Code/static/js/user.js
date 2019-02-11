@@ -129,7 +129,7 @@ function comprarAccion(ID) {
 			'func': 'comprarAccion',
 			'indice': ID,
 			'amount': cantidad,
-			'cuenta': cuenta,
+			'accounts_id': cuenta,
 	  }));
 	}
   	return false;
@@ -152,7 +152,7 @@ function venderAccion(ID) {
 			'func': 'venderAccion',
 			'indice': ID,
 			'amount': cantidad,
-			'cuenta': cuenta,
+			'accounts_id': cuenta,
 	  }));
 	}
   	return false;
