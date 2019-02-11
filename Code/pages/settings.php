@@ -5,7 +5,6 @@
     <div class="w3-row-padding">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.4.3/cropper.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.4.3/cropper.css" />
-        <script src="./static/js/user.js"></script>
         <div class="w3-col m12">
             <div class="w3-card w3-round w3-white">
                 <script src="./static/js/tabSwitch.js"></script>
