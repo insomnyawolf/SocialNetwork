@@ -38,6 +38,10 @@ if(!!!isset($_SESSION["user_id"])){
             addMoney();
         }else if($_REQUEST["func"] == "takeMoney"){ //Si el usuario elije darse de baja te carga el código
             takeMoney();
+        }else if($_REQUEST["func"] == "comprarAccion"){ //Si el usuario elije darse de baja te carga el código
+            comprarAccion();
+        }else if($_REQUEST["func"] == "venderAccion"){ //Si el usuario elije darse de baja te carga el código
+            venderAccion();
         }else if($_REQUEST["func"] == "editUser"){
             $date = strtotime($_REQUEST["fecha_nac"]);
             $sql = "UPDATE users SET nombre=?, apellido=?, domicilio=?, fecha_nac=?, telefono=?, movil=?, dni=? WHERE user_id=?";
