@@ -208,4 +208,55 @@ function getAccounts(){
         <?php
     }
 }
+function getIndices(){
+    require(ROOT .'code/config.php');
+    $queryref = 'SELECT * FROM indices';
+    $stmtref = $pdo->prepare($queryref); //Prepared Statement con la query
+    $stmtref->execute();
+    $time = time();
+    while ($rowref = $stmtref->fetch()){
+        $diff = $time - $rowref["last_refresh"];
+        if ($diff > 150){
+            $queryup = 'UPDATE indices SET `value` = ?, last_refresh = ? WHERE indices_id = ?';
+            $stmtup = $pdo->prepare($queryup); //Prepared Statement con la query
+            $stmtup->execute([rand(0, 100), $time, $rowref["indices_id"]]);
+        }
+    }
+    $query = 'SELECT * FROM indices';
+    $stmt = $pdo->prepare($query); //Prepared Statement con la query
+    $stmt->execute();
+    while ($row = $stmt->fetch()){
+        $query2 = 'SELECT `amount` FROM `indices_compra` where user_id = ? AND indices_id = ?';
+        $stmt2 = $pdo->prepare($query2); //Prepared Statement con la query
+        $stmt2->execute([$_SESSION['user_id'], $row['indices_id']]);
+        $row2 = $stmt2->fetch();
+        $cantidadid = "cantidad".$row['indices_id'];
+        $valorid = "valor".$row['indices_id'];
+        $precioid = "precio".$row['indices_id'];
+        $id = $row['indices_id'];
+        ?>
+        <form method="post" class="w3-container w3-padding w3-centered" id="<?php echo($form); ?>" onsubmit="event.preventDefault();">
+            <h4 class="inline-block w3-padding">Nombre:</h4><input type="text" class="w3-border w3-padding" value="<?php echo($row["name"]);?>"  readonly /><br /><br />
+            <h4 class="inline-block w3-padding">Valor:</h4><input type="text" id="<?php echo($valorid);?>" class="w3-border w3-padding" value="<?php echo($row["value"]);?>"  readonly />
+            <h4 class="inline-block w3-padding">Disponibles:</h4><input type="text" class="w3-border w3-padding" value="<?php echo($row2["amount"]);?>" readonly/><br /><br />
+            <h4 class="inline-block w3-padding">Cantidad:</h4><input type="number" id="<?php echo($cantidadid);?>" class="w3-border w3-padding" min="0" value="0" onkeypress="updatePrecio(<?php echo($id);?>);" oninput="updatePrecio(<?php echo($id);?>);" onchange="updatePrecio(<?php echo($id);?>);"/>
+            <h4 class="inline-block w3-padding">Precio:</h4><input type="text" id="<?php echo($precioid);?>" class="w3-border w3-padding" value="0" readonly/><br /><br />
+            <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>&nbsp;Vender</button> 
+            <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>&nbsp;Comprar</button> 
+            <select name="cuenta" class="w3-button w3-theme-d1 w3-margin-bottom">
+                <?php getIndicesCuentas(); ?>
+            </select>
+        </form>
+        <?php
+    }
+}
+function getIndicesCuentas(){
+    require(ROOT .'code/config.php');
+    $query = 'SELECT * FROM accounts WHERE user_id = ?';
+    $stmt = $pdo->prepare($query); //Prepared Statement con la query
+    $stmt->execute([$_SESSION['user_id']]);
+    while ($row = $stmt->fetch()){ ?>
+    <option value="<?php echo($row["accounts_id"]);?>"><?php echo($row["balance"]);?></option>
+    <?php }
+}
 ?>
