@@ -78,7 +78,7 @@ function getuser(){
         <h4 class="inline-block w3-padding">Is Active:</h4><input name="EditIsActive" id="EditIsActive" type="checkbox" class="w3-border w3-padding" <?php echo(isChecked($row["isActive"])) ?> /><br /><br />
         <h4 class="inline-block w3-padding">Is CAT:</h4><input name="EditIsCAT" id="EditIsCAT" type="checkbox" class="w3-border w3-padding" <?php echo(isChecked($row["isCAT"])) ?> /><br /><br />
         <div class="full w3-padding">
-            <button type="submit" id="submitFormData" class="w3-button isa_error"><i class="fa fa-pencil"></i> &nbsp;Confirmar Cambios</button>
+            <button type="submit" id="submitFormData" class="w3-button isa_error"><i class="fas fa-user-edit"></i> &nbsp;Confirmar Cambios</button>
         </div>
     </form>
 <?php }

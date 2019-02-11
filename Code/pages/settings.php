@@ -32,7 +32,7 @@
                         <h4 class="inline-block w3-padding">Movil:</h4> <input name="movil" id="movil" type="text" class="w3-border w3-padding" value=<?php echo('"'.$_SESSION["movil"].'"');?> /><br /><br />
                         <h4 class="inline-block w3-padding">DNI:</h4><input name="dni" id="dni" type="text" class="w3-border w3-padding" value=<?php echo('"'.$_SESSION["dni"].'"');?> /><br /><br />
                         <div class="full w3-padding">
-                            <button type="submit" id="submitFormData" class="w3-button w3-theme"><i class="fa fa-pencil"></i> &nbsp;Enviar</button>
+                            <button type="submit" id="submitFormData" class="w3-button w3-theme"><i class="fas fa-user-edit"></i> &nbsp;Enviar</button>
                         </div>
                     </form>
                 </div>
@@ -73,7 +73,7 @@
                         <input name="func" id="func" type="text" class="w3-border w3-padding" value="unsuscribe" hidden/>
                         <h4 class="inline-block w3-padding">Contraseña:</h4><input name="password" id="password" type="password" class="w3-border w3-padding"/><br /><br />
                         <div class="full w3-padding">
-                            <button type="submit" id="submitFormDataDeactivate" class="w3-button isa_error"><i class="fa fa-pencil"></i> &nbsp;Desactivar</button>
+                            <button type="submit" id="submitFormDataDeactivate" class="w3-button isa_error"><i class="fas fa-heart-broken"></i> &nbsp;Desactivar</button>
                         </div>
                     </form>
                 </div>
