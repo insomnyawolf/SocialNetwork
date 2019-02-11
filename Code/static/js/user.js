@@ -111,6 +111,52 @@ function takeMoney(AccountID) {
   	}
 return false;
 }
+function comprarAccion(ID) {
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+	  if (this.readyState == 4 && this.status == 200) {
+		   document.getElementById("form"+ID).innerHTML = this.responseText;
+		}/*else{
+			alert('Request failed.  Returned status of ' + xhttp.status);
+	  }*/
+	};
+	xhttp.open("POST", "./code/settings.php", true);
+	xhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+	var cantidad = document.getElementById("cantidad"+ID).value;
+	var cuenta = document.getElementById("cuenta"+ID).value;
+	if (cantidad > 0){
+		xhttp.send(param({
+			'func': 'comprarAccion',
+			'indice': ID,
+			'amount': cantidad,
+			'cuenta': cuenta,
+	  }));
+	}
+  	return false;
+}
+function venderAccion(ID) {
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+	  if (this.readyState == 4 && this.status == 200) {
+		   document.getElementById("form"+ID).innerHTML = this.responseText;
+		}/*else{
+			alert('Request failed.  Returned status of ' + xhttp.status);
+	  }*/
+	};
+	xhttp.open("POST", "./code/settings.php", true);
+	xhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+	var cantidad = document.getElementById("cantidad"+ID).value;
+	var cuenta = document.getElementById("cuenta"+ID).value;
+	if (cantidad > 0){
+		xhttp.send(param({
+			'func': 'venderAccion',
+			'indice': ID,
+			'amount': cantidad,
+			'cuenta': cuenta,
+	  }));
+	}
+  	return false;
+}
 function updatePrecio(ID){
 	var cantidad = document.getElementById("cantidad"+ID).value;
 	var valor = document.getElementById("valor"+ID).value;
