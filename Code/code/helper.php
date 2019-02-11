@@ -257,17 +257,97 @@ function getIndicesCuentas(){
     $query = 'SELECT * FROM accounts WHERE user_id = ?';
     $stmt = $pdo->prepare($query); //Prepared Statement con la query
     $stmt->execute([$_SESSION['user_id']]);
-    while ($row = $stmt->fetch()){ ?>
+    while ($row = $stmt->fetch()){
+    ?>
     <option value="<?php echo($row["accounts_id"]);?>"><?php echo($row["balance"]);?></option>
     <?php }
 }
 function comprarAccion(){
     require(ROOT .'code/config.php');
-    $query = 'SELECT * FROM accounts WHERE user_id = ?';
+    //Valor De La Tansaccion
+    $queryValue = 'SELECT `value` FROM indices where indices_id = ?';
+    $stmtValue = $pdo->prepare($queryValue); //Prepared Statement con la query
+    $stmtValue->execute([$_REQUEST['indice']]);
+    $rowValue = $stmtValue->fetch();
+    //Dinero en la cuenta
+    $query = 'SELECT balance FROM accounts WHERE user_id = ? AND accounts_id = ?';
     $stmt = $pdo->prepare($query); //Prepared Statement con la query
-    $stmt->execute([$_SESSION['user_id']]);
+    $stmt->execute([$_SESSION['user_id'], $_REQUEST['accounts_id']]);
+    if($stmt->rowCount()){
+        if($_REQUEST['amount'] > 0){
+            $row = $stmt->fetch();
+            $valorTrans = $_REQUEST['amount']*$rowValue['value'];
+            $balance = $row["balance"] - $valorTrans;
+            if($balance > 0){
+                //Comprobar Si existe Para actualizarlo y si no crear registro nuevo
+                $queryUserAccion = 'SELECT * FROM indices_compra where indices_id = ? AND user_id = ?';
+                $stmtUserAccion = $pdo->prepare($queryUserAccion); //Prepared Statement con la query
+                $stmtUserAccion->execute([$_REQUEST['indice'], $_SESSION['user_id']]);
+                if($stmtUserAccion->rowCount()){
+                    $rowAccion = $stmtUserAccion->fetch();
+                    $total = $_REQUEST['amount']+$rowAccion['amount'];
+                    $query2 =   'UPDATE indices_compra SET amount = ? WHERE indices_compra_id = ?';
+                    $stmt2 = $pdo->prepare($query2); //Prepared Statement con la query
+                    $stmt2->execute([$total, $rowAccion['indices_compra_id']]);
+                }else{
+                    $queryInsert = 'INSERT INTO indices_compra(indices_id, user_id, amount) values(?, ?, ?)';
+                    $stmtyInsert  = $pdo->prepare($queryInsert); //Prepared Statement con la query
+                    $stmtyInsert ->execute([$_REQUEST['indice'], $_SESSION['user_id'], $_REQUEST['amount']]);
+                }
+                $query2 =   'UPDATE accounts SET balance = ? WHERE accounts_id = ?';
+                $stmt2 = $pdo->prepare($query2); //Prepared Statement con la query
+                $stmt2->execute([$balance, $_REQUEST['accounts_id']]);
+                if ($stmt2->rowCount()){ //Si algo ha cambiado
+                    echo("Se han comprado acciones satisfactoriamente."); 
+                }else{
+                    echo("Ha ocurrido un error al comprar acciones"); 
+                }
+            }else{
+                echo("No puedes comprar acciones por un valor superior al dinero que dispones"); 
+            }
+        }else{
+            echo("No se ha comprado ninguna accion."); 
+        }
+    }
 }
 function venderAccion(){
     require(ROOT .'code/config.php');
+    //Ver Cantidad de acciones disponibles
+    $queryUserAccion = 'SELECT * FROM indices_compra where indices_id = ? AND user_id = ?';
+    $stmtUserAccion = $pdo->prepare($queryUserAccion); //Prepared Statement con la query
+    $stmtUserAccion->execute([$_REQUEST['indice'], $_SESSION['user_id']]);
+    if($stmtUserAccion->rowCount()){
+        $rowAccion = $stmtUserAccion->fetch();
+        if($rowAccion['amount'] >= $_REQUEST['amount']){
+            $queryValue = 'SELECT `value` FROM indices where indices_id = ?';
+            $stmtValue = $pdo->prepare($queryValue); //Prepared Statement con la query
+            $stmtValue->execute([$_REQUEST['indice']]);
+            $rowValue = $stmtValue->fetch();
+            $valorTrans = $_REQUEST['amount']*$rowValue['value'];
+            $total = $rowAccion['amount'] - $_REQUEST['amount'];
+            $query2 = 'UPDATE indices_compra SET amount = ? WHERE indices_compra_id = ?';
+            $stmt2 = $pdo->prepare($query2); //Prepared Statement con la query
+            $stmt2->execute([$total, $rowAccion['indices_compra_id']]);
+            //Calcular nuevo balance de la cuenta
+            $query = 'SELECT balance FROM accounts WHERE user_id = ? AND accounts_id = ?';
+            $stmt = $pdo->prepare($query); //Prepared Statement con la query
+            $stmt->execute([$_SESSION['user_id'], $_REQUEST['accounts_id']]);
+            $row = $stmt->fetch();
+            $balance = $row['balance'] + $valorTrans;
+            $query2 =   'UPDATE accounts SET balance = ? WHERE accounts_id = ?';
+                $stmt2 = $pdo->prepare($query2); //Prepared Statement con la query
+                $stmt2->execute([$balance, $_REQUEST['accounts_id']]);
+                if ($stmt2->rowCount()){ //Si algo ha cambiado
+                    echo("Se han comprado acciones satisfactoriamente."); 
+                }else{
+                    echo("Ha ocurrido un error al comprar acciones"); 
+                }
+        }else{
+            echo("No dispones de suficientes acciones para realizar esta operacion."); 
+        }
+        //Ver precio de una accion
+    }else{
+        echo("No dispones de acciones para este indice."); 
+    }
 }
 ?>
