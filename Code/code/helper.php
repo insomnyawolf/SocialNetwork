@@ -278,7 +278,7 @@ function comprarAccion(){
             $row = $stmt->fetch();
             $valorTrans = $_REQUEST['amount']*$rowValue['value'];
             $balance = $row["balance"] - $valorTrans;
-            if($balance > 0){
+            if($balance >= 0){
                 //Comprobar Si existe Para actualizarlo y si no crear registro nuevo
                 $queryUserAccion = 'SELECT * FROM indices_compra where indices_id = ? AND user_id = ?';
                 $stmtUserAccion = $pdo->prepare($queryUserAccion); //Prepared Statement con la query
