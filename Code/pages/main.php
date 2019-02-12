@@ -52,7 +52,14 @@
     </div> 
 </div>
 --> 
-<div class="w3-container w3-card w3-white w3-round w3-margin"><br>
-    <?php getIndices(); ?>
-<!-- Fin Columna Enmedio -->
+<div>
+    <div class="w3-row-padding">
+        <div class="w3-col m12">
+            <div class="w3-card w3-round w3-white">
+                <?php getIndices(); ?>
+            </div>
+        </div>
+    </div>
 </div>
+<!-- Fin Columna Enmedio -->
+
