@@ -11,6 +11,7 @@ function template($path){
     <!-- <body class="w3-theme-l5"> -->
     <!-- Navbar -->
     <?php require_once("./code/navbar.php");?>
+    <script src="./static/js/user.js"></script>
     <!-- Page Container -->
     <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">    
     <!-- The Grid -->

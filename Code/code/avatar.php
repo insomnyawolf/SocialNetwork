@@ -4,7 +4,7 @@ if(!!!isset($_SESSION["user_id"])){
 }
 $imageFileType = strtolower(pathinfo($_FILES["avatar"]["name"],PATHINFO_EXTENSION));
 $target_dir = ROOT . "upload/";
-$avatarName = basename($_SESSION["user_id"].".".$imageFileType);
+$avatarName = $_SESSION["user_id"].".".$imageFileType;
 $target_file = $target_dir . $avatarName;
 $uploadOk = 1;
 // Check if image file is a actual image or fake image
@@ -35,24 +35,11 @@ if($uploadOk == 0) {
     echo("Sorry, your file was not uploaded.");
 // if everything is ok, try to upload file
 } else {
-    $files = glob("$target_dir".$_SESSION['user_id'].".*"); // Will find 2.txt, 2.php, 2.gif
-
-    // Process through each file in the list
-    // and output its extension
-    if (count($files) > 0){
-        foreach ($files as $file){
-            unlink($file);
-        }
-    }
-    //echo($target_file);
-    $filename = ROOT . 'upload/'.$id;
-    foreach (glob($filename.".{jpg,jpeg,png,gif}", GLOB_BRACE) as $filename) {
-        unlink($filename);
+    foreach (glob("$target_dir".$_SESSION['user_id'].".*") as $file) {
+        unlink($file);
     }
     $result = move_uploaded_file($_FILES["avatar"]["tmp_name"], $target_file);
-    if ($result) {
-        echo($target_file);
-    } else {
+    if (!$result) {
         die("Sorry, there was an error uploading your file.\nError: ".$_FILES["avatar"]["error"]);
     }
 }

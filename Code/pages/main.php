@@ -1,3 +1,4 @@
+<!--
 <div>
     <div class="w3-row-padding">
         <div class="w3-col m12">
@@ -9,8 +10,7 @@
             </div>
         </div>
     </div>
-</div>
-        
+</div> 
 <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
     <img src="/w3images/avatar2.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
     <span class="w3-right w3-opacity">1 min</span>
@@ -51,5 +51,15 @@
         <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>  Comment</button> 
     </div> 
 </div>
-    
+--> 
+<div>
+    <div class="w3-row-padding">
+        <div class="w3-col m12">
+            <div class="w3-card w3-round w3-white">
+                <?php getIndices(); ?>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Fin Columna Enmedio -->
 
