@@ -24,6 +24,7 @@
                 <div class="w3-container w3-padding">
                     <h3 class="w3-opacity">Ajustes Generales:</h3>
                     <form action="./code/settings.php" id="myForm" method="post" class="w3-container w3-padding w3-centered">
+                        <input name="func" id="func" type="text" class="w3-border w3-padding" value="editUser" hidden/>
                         <h4 class="inline-block w3-padding">Nombre:</h4><input name="nombre" id="nombre" type="text" class="w3-border w3-padding" value=<?php echo('"'.$_SESSION["nombre"].'"');?> /><br /><br />
                         <h4 class="inline-block w3-padding">Apellido:</h4><input name="apellido" id="apellido" type="text" class="w3-border w3-padding" value=<?php echo('"'.$_SESSION["apellido"].'"');?> /><br /><br />
                         <h4 class="inline-block w3-padding">Domicilio:</h4><input name="domicilio" id="domicilio" type="text" class="w3-border w3-padding" value=<?php echo('"'.$_SESSION["domicilio"].'"');?> /><br /><br />
