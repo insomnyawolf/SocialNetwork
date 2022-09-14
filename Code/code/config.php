@@ -1,9 +1,9 @@
 <?php
    //Conexion con base de datos
    $host = 'localhost';
-   $db   = 'bolsavalores';
+   $db   = 'SocialNetwork';
    $user = 'root';
-   $pass = '';
+   $pass = 'test-password';
    $charset = 'utf8mb4';
 
    $options = [

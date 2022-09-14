@@ -6,7 +6,6 @@ if(!!!isset($_SESSION["user_id"])){
     //require te carga el codigo especificado
 }else{
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
-        require_once("./config.php");
         require_once("./helper.php");
         if(isset($_FILES["avatar"]["name"])){ //Si el avatar tiene nombre
             require_once('./avatar.php');
@@ -43,6 +42,7 @@ if(!!!isset($_SESSION["user_id"])){
         }else if($_REQUEST["func"] == "venderAccion"){ //Si el usuario elije darse de baja te carga el código
             venderAccion();
         }else if($_REQUEST["func"] == "editUser"){
+            require_once("./config.php");
             $date = strtotime($_REQUEST["fecha_nac"]);
             $sql = "UPDATE users SET nombre=?, apellido=?, domicilio=?, fecha_nac=?, telefono=?, movil=?, dni=? WHERE user_id=?";
             $stmt= $pdo->prepare($sql); //prepared statement para actualizar el usuario
